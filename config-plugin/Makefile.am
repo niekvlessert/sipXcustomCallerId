@@ -27,7 +27,7 @@ customcallerid_PKGS = \
 	mongo \
 	hivemind \
 	sipxcommons \
-	sipxconfig \
+	sipxconfig-neoconf \
 	sipxconfig-web
 
 customcallerid_DEPS = \
