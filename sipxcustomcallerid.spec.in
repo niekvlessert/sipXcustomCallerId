@@ -2,7 +2,6 @@ Name: @PACKAGE@
 Version: @VERSION@
 Release: @PACKAGE_REVISION@
 
-# Change to your information
 Summary: sipXecs Custom Caller ID from database
 License: LGPL
 Group: Telcommunications
@@ -10,24 +9,13 @@ Vendor: Telecats B.V.
 Packager: Niek Vlessert <niekvlessert@gmail.com>
 Url: http://www.telecats.nl/
 
-Requires: sipxcommserverlib >= %version
+Requires: sipxproxy >= %version
 
-# sipx c++ server modules
-BuildRequires: sipxcommserverlib-devel >= %version
-
-# java modules
-%if %{_vendor} == suse
-BuildRequires: java-1_6_0-sun-devel
-%else
-BuildRequires: java-devel >= 1.6
-%endif
 BuildRequires: automake
 BuildRequires: sipxcommons >= %version
-
-# Ruby modules
-Requires: rubygems
-
-# xml validation in 'make check'. Remove if you do not use that.
+BuildRequires: sipxconfig >= %version
+BuildRequires: sipxcommserverlib-devel >= %version
+BuildRequires: sipxproxy-devel >= %version
 BuildRequires: libxml2
 
 Source: %name-%version.tar.gz
@@ -46,9 +34,18 @@ database system.
 
 %package config
 Requires : sipxconfig >= %version
+Group: Telecommunications
+Vendor: Telecats B.V.
+Summary: Example configuration support for sipXecs. Meant to be changed by implementors
+
+%description config
+Configuration UI for managing customer caller id
 
 %package devel
 Requires : %name
+Group: Development/Libraries
+Vendor: Telecats B.V.
+Summary: Development libraries for custom caller id
 
 %description devel
 This is just sample text for the development portion of your project. Change this
