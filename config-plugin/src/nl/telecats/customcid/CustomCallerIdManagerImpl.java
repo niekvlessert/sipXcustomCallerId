@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.sipfoundry.commons.mongo.MongoDbTemplate;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
@@ -32,7 +32,7 @@ public class CustomCallerIdManagerImpl implements CustomCallerIdManager {
     public static final String DDI_COL = "cci_ddi";
     public static final String FROM_ATTR = "from";
     public static final String TO_ATTR = "to";
-    private MongoDbTemplate m_db;
+    private MongoTemplate m_db;
 
     @Override
     public Collection<CustomCallerAlias> getDnisRewrites() {
@@ -74,11 +74,11 @@ public class CustomCallerIdManagerImpl implements CustomCallerIdManager {
         return rw;
     }
 
-    public MongoDbTemplate getDb() {
+    public MongoTemplate getDb() {
         return m_db;
     }
 
-    public void setDb(MongoDbTemplate db) {
+    public void setDb(MongoTemplate db) {
         m_db = db;
     }
 

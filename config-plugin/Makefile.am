@@ -24,6 +24,7 @@ customcallerid_PKGS = \
 	commons-logging \
 	tapestry-framework \
 	tapestry-annotations \
+	spring-data-mongodb \
 	mongo \
 	hivemind \
 	sipxcommons \

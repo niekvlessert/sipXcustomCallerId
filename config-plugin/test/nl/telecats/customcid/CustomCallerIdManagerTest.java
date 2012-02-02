@@ -16,27 +16,32 @@
 package nl.telecats.customcid;
 
 import static org.junit.Assert.assertEquals;
-import static org.sipfoundry.sipxconfig.admin.commserver.imdb.MongoTestCaseHelper.insertJson;
+import static org.sipfoundry.sipxconfig.commserver.imdb.MongoTestCaseHelper.insertJson;
 
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sipfoundry.commons.mongo.MongoDbTemplate;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoException;
 
 
 public class CustomCallerIdManagerTest {
-    private MongoDbTemplate m_db = new MongoDbTemplate("test");
+    private MongoTemplate m_db;
     private CustomCallerIdManagerImpl m_ccim;
 
     @Before
-    public void onSetUp() {
-        m_db.drop();
+    public void onSetUp() throws UnknownHostException {
+        Mongo m = new Mongo("127.0.0.1");
+        m_db = new MongoTemplate(m, "test");
+        m_db.getDb().dropDatabase();
         m_ccim = new CustomCallerIdManagerImpl();
         m_ccim.setDb(m_db);
     }
